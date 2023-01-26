@@ -80,10 +80,10 @@ Examples/Results
 
 > cd /tmp
 
-> ../../Users/alexameen/src/ex/example/script1.sh
-../../Users/alexameen/src/ex/example/script1.sh
+> ../Users/alexameen/src/ex/example/script1.sh
+../Users/alexameen/src/ex/example/script1.sh
 
-> ../../Users/alexameen/src/ex/example/script2.sh
+> ../Users/alexameen/src/ex/example/script2.sh
 /Users/alexameen/src/ex/example/script2.sh
 #+END_SRC
 
