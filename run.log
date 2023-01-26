@@ -1,0 +1,36 @@
+> ./example/script1.sh
+./example/script1.sh
+
+> ./example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> script1.sh
+/Users/alexameen/src/ex/example/script1.sh
+
+> script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> /Users/alexameen/src/ex/example/script1.sh
+/Users/alexameen/src/ex/example/script1.sh
+
+> /Users/alexameen/src/ex/example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> ./links/link1.sh
+./links/link1.sh
+
+> ./links/link2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> /Users/alexameen/src/ex/links/link1.sh
+/Users/alexameen/src/ex/links/link1.sh
+
+> /Users/alexameen/src/ex/links/link2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> ../../Users/alexameen/src/ex/example/script1.sh
+../../Users/alexameen/src/ex/example/script1.sh
+
+> ../../Users/alexameen/src/ex/example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+

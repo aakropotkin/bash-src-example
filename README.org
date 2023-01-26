@@ -1,0 +1,77 @@
+#+TITLE: BASH_SOURCE Examples and Pitfalls
+
+The following example shows various values that =BASH_SOURCE= can take based
+on how a script is executed.
+
+It highlight why =realpath= is useful when your goal is to locate paths
+relative to the original script.
+
+You can run [[file:./run.sh][run.sh]] yourself, but I will inline the
+exmaple here.
+
+#+NAME: example/script1.sh
+#+BEGIN_SRC shell
+#! /usr/bin/env bash
+# example/script1.sh
+echo "${BASH_SOURCE[0]}";
+#+END_SRC
+
+#+NAME: example/script2.sh
+#+BEGIN_SRC shell
+#! /usr/bin/env bash
+# example/script2.sh
+${REALPATH:-realpath} "${BASH_SOURCE[0]}";
+#+END_SRC
+
+#+NAME: Make Symlinks
+#+BEGIN_SRC shell
+mkdir -p links;
+ln -srf ./example/script1.sh ./links/link1.sh;
+ln -srf ./example/script2.sh ./links/link2.sh;
+#+END_SRC
+
+#+NAME: Example Usage/Outputs
+#+BEGIN_SRC shell
+> ./example/script1.sh
+./example/script1.sh
+
+> ./example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> script1.sh
+/Users/alexameen/src/ex/example/script1.sh
+
+> script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> /Users/alexameen/src/ex/example/script1.sh
+/Users/alexameen/src/ex/example/script1.sh
+
+> /Users/alexameen/src/ex/example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> ./links/link1.sh
+./links/link1.sh
+
+> ./links/link2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> /Users/alexameen/src/ex/links/link1.sh
+/Users/alexameen/src/ex/links/link1.sh
+
+> /Users/alexameen/src/ex/links/link2.sh
+/Users/alexameen/src/ex/example/script2.sh
+
+> ../../Users/alexameen/src/ex/example/script1.sh
+../../Users/alexameen/src/ex/example/script1.sh
+
+> ../../Users/alexameen/src/ex/example/script2.sh
+/Users/alexameen/src/ex/example/script2.sh
+#+END_SRC
+
+You'll notice throughout these examples that the use of =realpath= provided
+consistency that would allow us to correctly locate file relative to the
+original script.
+This isn't to say that the alternative =script1.sh= doesn't have its own
+unique use cases, particularly for symlinks, but knowing how each behaves
+is important to avoid shooting your foot off.
