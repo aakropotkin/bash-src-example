@@ -25,7 +25,19 @@ ${REALPATH:-realpath} "${BASH_SOURCE[0]}";
 
 #+NAME: Make Symlinks
 #+BEGIN_SRC shell
-mkdir -p links;
+mkdir -p example links;
+
+cat <<'EOF' > ./example/script1.sh;
+#! /usr/bin/env bash
+echo "${BASH_SOURCE[0]}";
+EOF
+
+cat <<'EOF' > ./example/script2.sh;
+#! /usr/bin/env bash
+${REALPATH:-realpath} "${BASH_SOURCE[0]}";
+EOF
+
+chmod +x ./example/script{1,2}.sh;
 ln -srf ./example/script1.sh ./links/link1.sh;
 ln -srf ./example/script2.sh ./links/link2.sh;
 #+END_SRC
@@ -61,6 +73,8 @@ ln -srf ./example/script2.sh ./links/link2.sh;
 
 > /Users/alexameen/src/ex/links/link2.sh
 /Users/alexameen/src/ex/example/script2.sh
+
+> cd /tmp
 
 > ../../Users/alexameen/src/ex/example/script1.sh
 ../../Users/alexameen/src/ex/example/script1.sh
