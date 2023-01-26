@@ -48,24 +48,28 @@ ln -srf ./example/script2.sh ./links/link2.sh;
 Examples/Results
 #+NAME: Example Usage/Outputs
 #+BEGIN_SRC shell
+# Using relative paths
 > ./example/script1.sh
 ./example/script1.sh
 
 > ./example/script2.sh
 /Users/alexameen/src/ex/example/script2.sh
 
-> script1.sh
+# Using `PATH'
+> PATH="$PATH:$PWD/example" script1.sh
 /Users/alexameen/src/ex/example/script1.sh
 
-> script2.sh
+> PATH="$PATH:$PWD/example" script2.sh
 /Users/alexameen/src/ex/example/script2.sh
 
+# Absolute Path
 > /Users/alexameen/src/ex/example/script1.sh
 /Users/alexameen/src/ex/example/script1.sh
 
 > /Users/alexameen/src/ex/example/script2.sh
 /Users/alexameen/src/ex/example/script2.sh
 
+# Symlinks
 > ./links/link1.sh
 ./links/link1.sh
 
@@ -78,6 +82,7 @@ Examples/Results
 > /Users/alexameen/src/ex/links/link2.sh
 /Users/alexameen/src/ex/example/script2.sh
 
+# From Another Directory
 > cd /tmp
 
 > ../Users/alexameen/src/ex/example/script1.sh
