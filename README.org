@@ -9,6 +9,7 @@ relative to the original script.
 You can run [[file:./run.sh][run.sh]] yourself, but I will inline the
 exmaple here.
 
+First script doesn't use =realpath=.
 #+NAME: example/script1.sh
 #+BEGIN_SRC shell
 #! /usr/bin/env bash
@@ -16,6 +17,7 @@ exmaple here.
 echo "${BASH_SOURCE[0]}";
 #+END_SRC
 
+This bad boy does.
 #+NAME: example/script2.sh
 #+BEGIN_SRC shell
 #! /usr/bin/env bash
@@ -23,6 +25,7 @@ echo "${BASH_SOURCE[0]}";
 ${REALPATH:-realpath} "${BASH_SOURCE[0]}";
 #+END_SRC
 
+Setup
 #+NAME: Make Symlinks
 #+BEGIN_SRC shell
 mkdir -p example links;
@@ -42,6 +45,7 @@ ln -srf ./example/script1.sh ./links/link1.sh;
 ln -srf ./example/script2.sh ./links/link2.sh;
 #+END_SRC
 
+Examples/Results
 #+NAME: Example Usage/Outputs
 #+BEGIN_SRC shell
 > ./example/script1.sh
